@@ -41,6 +41,7 @@ def add_student(name, cohort)
 end
 
 def input_students
+  puts "This is the input option."
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first name
@@ -57,6 +58,7 @@ def input_students
 end
 
 def show_students
+  puts "This is the show students option."
   print_header
   print_student_list
   print_footer
@@ -79,6 +81,7 @@ end
 
 def save_students
   # open the file for writing
+  puts "This is the saving option, enter a file name to save."
   puts "What file name?"
   @the_file_name = gets.chomp
   CSV.open(@the_file_name, "wb") do |csv|
@@ -93,6 +96,7 @@ def save_students
 end
 
 def load_students()
+  puts "This is the loading option, enter a file name to load."
   puts "What file name?"
   @the_file_name = gets.chomp
   CSV.foreach(@the_file_name) do |row|
