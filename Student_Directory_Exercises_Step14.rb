@@ -12,6 +12,21 @@ def print_menu
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
+def try_load_students
+  filename = ARGV.first# first argument from the command line
+  if filename.nil? # get out of the method if it isn't given
+    filename = "students.csv"
+  end
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+     puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
+
+
 def interactive_menu
   loop do
     print_menu
@@ -95,14 +110,20 @@ def save_students
   puts "Students have"
 end
 
-def load_students()
-  puts "This is the loading option, enter a file name to load."
-  puts "What file name?"
-  @the_file_name = gets.chomp
+def load_students(filename = nil)
+  if filename.nil?
+    puts "This is the loading option, enter a file name to load."
+    puts "What file name?"
+    @the_file_name = gets.chomp
+  else
+    @the_file_name = filename
+  end
   CSV.foreach(@the_file_name) do |row|
     # use row here...
     name, cohort = row
+    @students << {name: name, cohort: cohort}
   end
 end
 
+try_load_students
 interactive_menu
