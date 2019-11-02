@@ -7,5 +7,7 @@ while counter < 20
     puts "Fizz"
   elsif counter % 5 === 0
     puts "Buzz"
+  else
+    puts counter
   end
 end
